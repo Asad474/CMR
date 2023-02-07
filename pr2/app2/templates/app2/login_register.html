@@ -1,0 +1,33 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    {%if page == 'register'%}
+        <h1><center><strong>{{page | upper}}</strong></center></h1><br>
+        <form action="" method="post">
+            {%csrf_token%}
+            {%for field in form%}
+                {{field.label}}
+                {{field}}
+                <br><br>
+            {%endfor%}
+            <button class="btn btn-sm btn-info" type="submit">Submit</button>
+            <br><br>
+            <a href="{%url 'loginpage'%}">Sign In</a>
+        </form>
+    
+    {%else%}    
+        <h1><center><strong>{{page | upper}}</strong></center></h1><br>
+        <form action="" method="post">
+            {%csrf_token%}
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="xyz"><br><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"><br><br>
+            <button class="btn btn-sm btn-info" type="submit">Login</button>
+            <br><br>
+            <a href="{%url 'register'%}">Sign Up</a><br>
+            <a href="{%url 'password_reset'%}">Forgot Password</a>
+        </form>        
+
+    {%endif%}
+{%endblock%}

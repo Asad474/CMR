@@ -1,0 +1,30 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    {%include 'app2/status.html'%}
+    <h3><center><strong><a class="btn btn-sm btn-info" href="{%url 'customer' request.user.customer.id%}">User Profile</a></strong></center></h3><br><br>
+    
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Product</th>
+                        <th>Note</th>
+                        <th>Date Ordered</th>
+                        <th>Status</th>
+                    </tr>
+
+                    {%for ord in orders%}
+                        <tr>
+                            <td>{{ord.product}}</td>
+                            <td>{{ord.note}}</td>
+                            <td>{{ord.date_created}}</td>
+                            <td>{{ord.status}}</td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+{%endblock%}

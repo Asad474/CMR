@@ -1,0 +1,27 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    <h1><center><strong>Form</strong></center></h1><br>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    {%if page == 'order'%}
+                        {{formset.management_form}}
+                        {%for f in formset%}
+                            {{f}}
+                            <hr>
+                        {%endfor%}    
+
+                    {%else%}    
+                        {{form.as_p}}
+                        
+                    {%endif%}    
+                    <button class="btn btn-sm btn-info" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+{%endblock%}    

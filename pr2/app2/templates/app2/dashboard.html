@@ -1,0 +1,55 @@
+{%extends 'main.html'%}
+
+{%block content%}
+    {%include 'app2/status.html'%}
+    <br>
+
+    <div class="row">
+        <div class="col-md-5">
+            <h5>CUSTOMERS : </h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th></th>
+                        <th>Customers</th>
+                        <th>Phone</th>
+                    </tr>
+                    {%for cust in customers%}
+                        <tr>
+                            <td><a class="btn btn-sm btn-info" href="{%url 'customer' cust.id%}">View</a></td>
+                            <td>{{cust.name}}</td>
+                            <td>{{cust.phone}}</td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h5>LAST {{orders_count}} ORDERS</h5>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Product</th>
+                        <th>Date Ordered</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+
+                    {%for ord in orders%}
+                        <tr>
+                            <td>{{ord.product}}</td>
+                            <td>{{ord.date_created}}</td>
+                            <td>{{ord.status}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{%url 'updateorder' ord.id%}">Update</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{%url 'deleteorder' ord.id%}">Delete</a></td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+{%endblock%}    
